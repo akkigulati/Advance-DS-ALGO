@@ -46,6 +46,7 @@ import java.util.*;
 public class Main {
 
   public static void quickSort(int[] arr, int lo, int hi) {
+    // <= ki jgha < ke lie bhi chl jaega...
      if(lo<=hi){
      int pIdx=partition(arr,arr[hi],lo,hi);
      quickSort(arr,lo,pIdx-1);
