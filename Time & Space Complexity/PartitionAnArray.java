@@ -27,7 +27,8 @@ Sample Input
 Sample Output
 Swapping -2 and 7
 Swapping 1 and 7
--2 1 4 7 3 */
+Swapping 3 and 4
+-2 1 3 7 4  */
 
 import java.io.*;
 import java.util.*;
@@ -37,7 +38,7 @@ public class Main {
   public static void partition(int[] arr, int pivot){
     int j=0;
     for(int i=0;i<arr.length;){
-        if(arr[i]>=pivot){
+        if(arr[i]>pivot){
             i++;
         }else{
             swap(arr,i,j);
