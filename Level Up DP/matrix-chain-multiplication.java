@@ -93,3 +93,34 @@ public class Main {
 
 	
 }
+///tabulation
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scn.nextInt();
+        }
+        int Mem[][] = new int[arr.length + 1][arr.length + 1];
+        for (int gap = 2; gap < arr.length; gap++) {
+            for (int i = 0, j = gap; j < arr.length; j++, i++) {
+                int min = Integer.MAX_VALUE;
+                for (int cp = i + 1; cp < j; cp++) {
+                    int leftCall = Mem[i][cp];
+                    int rightCall = Mem[cp][j];
+                    int myans = leftCall + rightCall + (arr[i] * arr[j] * arr[cp]);
+                    min = Math.min(min, myans);
+                }
+                Mem[i][j] = min;
+            }
+        }
+
+        System.out.println(Mem[0][arr.length-1]);
+    }
+}
