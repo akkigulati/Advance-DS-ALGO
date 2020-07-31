@@ -33,7 +33,7 @@ public class Main {
 	    }
         int min=Integer.MAX_VALUE;
         
-        //ci => curent indx  si => start idx  ei =>ending idx..
+        //ci => cut indx(do m divide)  si => start idx  ei =>ending idx..
         for(int ci=si+1;ci<ei;ci++){
             int leftCall=mcm(arr,si,ci);
             int rightCall=mcm(arr,ci,ei);
@@ -69,7 +69,7 @@ public class Main {
 	    }
         int min=Integer.MAX_VALUE;
         
-        //ci => curent indx  si => start idx  ei =>ending idx..
+        //ci => cut indx  si => start idx  ei =>ending idx..
         for(int ci=si+1;ci<ei;ci++){
             int leftCall=mcm(arr,si,ci,mem);
             int rightCall=mcm(arr,ci,ei,mem);
