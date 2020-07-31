@@ -107,7 +107,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = scn.nextInt();
         }
-        int Mem[][] = new int[arr.length + 1][arr.length + 1];
+        int Mem[][] = new int[arr.length ][arr.length];
         for (int gap = 2; gap < arr.length; gap++) {
             for (int i = 0, j = gap; j < arr.length; j++, i++) {
                 int min = Integer.MAX_VALUE;
