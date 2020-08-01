@@ -258,3 +258,65 @@ public class Main {
     }
 
 }
+//tabulation
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    private static int optimalbsttab(int[] frequency) {
+        int n = frequency.length;
+        int dp[][] = new int[n][n];
+
+
+
+        for (int gap = 0; gap < n; gap++) {
+            for (int i = 0, j = gap; j < n; j++, i++) {
+                int si = i;
+                int ei = j;
+                if (gap == 0) { //or si==ei
+                    dp[si][ei] = frequency[i];
+                    continue;
+                } else {
+                    int sum = 0;
+                    int min = Integer.MAX_VALUE;
+                    for (int cut = si; cut <= ei; cut++) {
+                        sum += frequency[cut];
+                        int leftTreeCost = cut - 1 >= si ? dp[si][cut - 1] : 0;
+                        int rightTreeCost = cut + 1 <= ei ? dp[cut + 1][ei] : 0;
+                        int mycost = leftTreeCost + rightTreeCost;
+                        //adding sum of all nodes 
+
+                        if (min > mycost) {
+
+                            min = mycost;
+
+                        }
+
+                    }
+                    min += sum;
+                    dp[si][ei] = min;
+                }
+            }
+        }
+
+        return dp[0][n - 1];
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int[] keys = new int[n];
+        int[] frequency = new int[n];
+        for (int i = 0; i < n; i++) {
+            keys[i] = scn.nextInt();
+        }
+        for (int i = 0; i < n; i++) {
+            frequency[i] = scn.nextInt();
+        }
+        int mem[][] = new int[n][n];
+        System.out.println(optimalbsttab(frequency));
+    }
+
+}
