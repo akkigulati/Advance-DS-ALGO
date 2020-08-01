@@ -62,3 +62,47 @@ public class Main {
     }
 
 }
+//tab
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int solutionTab(int[] arr) {
+        int n = arr.length;
+        int dp[][] = new int[n][n];
+
+        for (int gap = 0; gap < n; gap++) {
+            for (int i = 0, j = gap; j < n; j++,i++) {
+                int si = i, ei = j;
+                int lval = si - 1 >= 0 ? arr[si-1] : 1;
+                int rval = ei + 1 < n ? arr[ei+1] : 1;
+                if (si == ei) {
+                    dp[si][ei] = lval * arr[ei] * rval;
+                    continue;
+                }
+                int maxscore = Integer.MIN_VALUE;
+                for (int cut = si; cut <= ei; cut++) {
+                    int leftcoins = cut - 1 >= si ? dp[si][cut - 1] : 0;
+                    int rightcoins = cut + 1 <= ei ? dp[cut + 1][ei] : 0;
+
+                    int myscore = lval * arr[cut] * rval;
+                    myscore = myscore + leftcoins + rightcoins;
+                    if (myscore > maxscore) maxscore = myscore;
+                }
+                dp[si][ei] = maxscore;
+            }
+        }
+        return dp[0][n - 1];
+    }
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = scn.nextInt();
+        }
+        System.out.println(solutionTab(arr));
+    }
+
+}
