@@ -16,7 +16,7 @@ class Solution {
                 ai.add(nums[i]);
                 vis[i]=true;
                 permutation(nums,ai,vis,ans);   
-                ai.remove(new Integer(nums[i]));
+                ai.remove(new Integer(nums[i]));//Alternate way ai.remove(ai.size()-1);
                 vis[i]=false;
             }              
         }
