@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/single-number-iii/
-class Solution {	
+class Solution {	 
 	public int[] singleNumber(int[] nums) {
         int xor=0;
         for(int n:nums){
