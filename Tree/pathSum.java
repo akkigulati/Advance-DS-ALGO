@@ -31,5 +31,6 @@ class Solution {
         if(ans) return true;
         
         return false;
+        //return hasPathSum(root.left,sum-root.val)||hasPathSum(root.right,sum-root.val);
     }
 }
