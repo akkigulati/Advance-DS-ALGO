@@ -64,3 +64,62 @@ class Solution {
         return new ArrayList<>();
     }
 }
+//optimized O(1) space
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
+        if(root==null){
+            return new ArrayList<>();
+        }
+        
+        ai=new ArrayList<>();
+        kfarAway(root,target,K);
+        
+        
+        return ai;
+    }
+    static List<Integer> ai;
+    public static void kleveldown(TreeNode node,int k,TreeNode block){
+        if(node==null) return ;
+        if(node==block){
+            return;
+        }
+        if(k==0){
+            ai.add(node.val);
+            return ;
+        }
+        
+        
+        kleveldown(node.left,k-1,block);
+        kleveldown(node.right,k-1,block);
+        
+    }
+    public int kfarAway(TreeNode root,TreeNode target,int k){
+        if(root==null){
+            return -1;
+        }
+        if(root==target){
+            kleveldown(root,k,null);
+            return 1;
+        }
+       int ld=kfarAway(root.left,target,k);
+        if(ld!=-1){
+            kleveldown(root,k-ld,root.left);
+                return ld+1;
+        }
+        int rd=kfarAway(root.right,target,k);
+        if(rd!=-1){
+            kleveldown(root,k-rd,root.right);
+                return rd+1;
+        }
+        return -1;
+    }
+}
